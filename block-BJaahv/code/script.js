@@ -1,29 +1,75 @@
 ```js
 function createUser(name,id,noOfProjects) {
-    let project = {}
-    project.name = name;
-    project.id = id;
-    project.noOfProjects = noOfProjects;
-    project.getProjects = function() {
-        return project.noOfProjects;
+    let user = {}
+    user.name = name;
+    user.id = id;
+    user.noOfProjects = noOfProjects;
+    user.getProjects = function() {
+        return user.noOfProjects;
     };
-    project.changeName = function(newName) {
-        return project.name;
+    user.changeName = function(newName) {
+        let prevName =user.name;
+        user.name = newName;
+        return prevName;
     };
-    project.incrementOfProject=function(project) {
-        project.noOfProjects = project;
-        return project.noOfProjects;
+    user.incrementOfProject=function() {
+        return user.noOfProjects += 1 ;
+        
     };
-    project.decrementOfProject = function(pro){
-      project.noOfProjects = pro;
-      return project.noOfProjects;
+    user.decrementOfProject = function(){
+       return user.noOfProjects -= 1 ;
+      
     };
-    return project;
+    return user;
 }
 let user1 = createUser("deep",2345,5); 
+//  test
+console.log(user1.name);
+ console.log(user1.id);
+ console.log(user.incrementOfProject());
+ console.log(user1.decrementOfProject());
 ```
 ```js prototypal pattern
-let userMethod = {
+let userMethod = {   
+    getProjects : function() {
+        return this.noOfProjects;
+    },
+    changeName :function(newName) {
+        let prevName =this.name;
+        this.name = newName;
+        return prevName;
+    },
+    incrementOfProject : function() {
+        return this.noOfProjects += 1 ;
+        
+    },
+    decrementOfProject : function(){
+       return this.noOfProjects -= 1 ;
+      
+    },
+
+};
+    function createUser(name,id,noOfProjects) {
+        let user = Object.create(userMethod);
+        user.name = name;
+        user.id = id;
+        user.noOfProjects = noOfProjects;
+        return user;
+    };
+    //  test
+    console.log(user1.name);
+    console.log(user1.id);
+    console.log(user.incrementOfProject());
+    console.log(user1.decrementOfProject());
+```
+```js pseudoclassical way
+function CreateUser(name,id,noOfProjects) {
+    this.name = name;
+    this.id = id;
+    this.noOfProjects = noOfProjects;
+    
+};
+CreateUser.prototype = {
     changeName :function (newName) {
         return this.name = name;
     },
@@ -37,14 +83,36 @@ let userMethod = {
         return this.noOfProject;
     },
     };
-    function createUser(name,id,noOfProjects) {
-        let userData = Object.create(userMethod);
-        this.name = name;
-        this.id = id;
-        this.noOfProjects = noOfProjects;
-        return userData;
-    };
+    //  test
+    console.log(user1.name);
+    console.log(user1.id);
+    console.log(user.incrementOfProject());
+    console.log(user1.decrementOfProject());
 ```
-```js pseudoclassical way
-    
+```js using class pattern
+class CreateUser {
+    constructor(name,id,noOfProjects) {
+     this.name = name;
+     this.id = id;
+     this.noOfProjects = noOfProjects;
+    }
+    changeName(newUser) {
+    let prevName = user.name;
+        user.name = newUser;
+        return prevName;
+    }
+    incrementOfProject() {
+        return this.noOfProjects += 1;
+        
+    }
+    decrementOfProject() {
+        return this.noOfProjects -= 1;
+        
+    }
+ };
+ //  test
+ console.log(user1.name);
+ console.log(user1.id);
+ console.log(user.incrementOfProject());
+ console.log(user1.decrementOfProject());
 ```
