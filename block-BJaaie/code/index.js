@@ -1,6 +1,6 @@
 function Animals(location, noOfLegs){
     this.location = location;
-    this.noofLegs = noOfLegs;
+    this.noOfLegs = noOfLegs;
 };
 Animals.prototype ={
     eat: function(){
@@ -11,10 +11,11 @@ Animals.prototype ={
          return this.location;
      },
     summary: function(){
-        return (`I live in ${this.location} and I have ${this.noofLegs}`)
+        return (`I live in ${this.location} and I have ${this.noOfLegs}`)
     },
 };
-function Dogs (name, color) {
+function Dogs (location,noOfLegs,name, color) {
+   Animals.call(this,location ,noOfLegs);
     this.name = name;
     this.color = color;
 };
@@ -34,7 +35,9 @@ Dogs.prototype = {
         return (` I am ${this.name} and I am of ${this.color} color. I can also bark`)
     }
 };
-function Cats(name, colorOfEyes){
+Object.setPrototypeOf(Dogs.prototype,Animals.prototype);
+function Cats(location,noOfLegs,name, colorOfEyes){
+    Animals.call(this,location,noOfLegs);
     Dogs.apply(this,[name]);
     this.colorOfEyes  = colorOfEyes;
 };
@@ -58,9 +61,9 @@ Object.setPrototypeOf(Cats.prototype,Animals.prototype);
 
 // Using class
 class Animals  {
-    constructor (location,noofLegs){
+    constructor (location,noOfLegs){
         this.location = location;
-        this.noofLegs = noofLegs;
+        this.noOfLegs = noOfLegs;
     }
      eat(){
      alert(`I live in ${this.location} and i can eat`);
@@ -74,7 +77,8 @@ class Animals  {
     }
 };
 class Dogs extends Animals {
-    constructor (name, color){
+    constructor (location,noOfLegs,name, color){
+        super(location,noOfLegs);
         this.name = name;
         this.color = color;
     }
@@ -94,9 +98,9 @@ class Dogs extends Animals {
     }
     
 };
-class Cats extends Dogs  {
-    constructor (name, colorOfEyes){
-        super(name);
+class Cats extends Animals  {
+    constructor (location,noOfLegs,name, colorOfEyes){
+        super(location,noOfLegs);
         this.colorOfEyes = colorOfEyes;
     }
        mew(){
@@ -115,4 +119,4 @@ class Cats extends Dogs  {
     }
     
 };
-let user1 = new Animals("Delhi", 4);
+
