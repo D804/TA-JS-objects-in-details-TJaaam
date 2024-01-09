@@ -36,7 +36,7 @@ personStore.greet(); // -> Logs 'hello'
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromPersonStore(name, age) {
-   let person = Object.create(personStore);
+   let person = new personStore;
    person.age = age;
    person.name = name;
    return person;
@@ -51,14 +51,10 @@ sandra.greet(); //-> Logs 'hello'
 
 /*** CHALLENGE 3 of 3 ***/
  
-var personStore = {
-  greet: function(){
-   console.log("Hello");
-  },
-   introduce:function (){
-       console.log("Hi my name is {this.name}");
-   }
-};
+ personStore.introduce = function(){
+  console.log(`"Hi, my name is ${this.name}".`)
+ }
+  
 
 // sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
 
@@ -130,7 +126,7 @@ var george = new PersonClass();
 
 class DeveloperClass extends PersonClass{
   constructor(name){
-      super(this,name);
+      super(name);
 }
   introduce(){
       console.log(`Hello World,my name is ${this.name} `);
@@ -160,16 +156,23 @@ function userFactory(name, score) {
   return user;
 }
 
-var adminFunctionStore /* Put code here */;
+var adminFunctionStore  = Object.create(userFunctionStore);
 
 function adminFactory(name, score) {
+  let obj = userFactory(name,score);
+  Object.setPrototypeOf(obj, adminFunctionStore);
+  obj.type = "Admin";
+  return obj;
+  
   let user2 = Object.create(adminFunctionStore);
   user2.name = name;
   user2.score = score;
 }
 
 /* Put code here for a method called sharePublicMessage*/
-
+adminFunctionStore.sharePublicMessage = function(){
+  console.log(`Welcome User`);
+}
 var adminFromFactory = adminFactory('Eva', 5);
 
 // /********* Uncomment these lines to test your work! *********/
