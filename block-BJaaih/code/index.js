@@ -2,8 +2,11 @@
 1. Create a function named `myMap` and add the method to `Array.prototype`.
 `myMap` will behave similar to how the `Array.map` works. To test the implementation use the code below.
 */
-
-// myMap function goes here
+function myMap(){
+  for (let i = 0; i < this.length; i++) {
+}
+}
+Array.prototype.myMap = myMap;
 
 // Test the myMap function you created above
 
@@ -28,7 +31,10 @@ console.log(capitalWords); // it should be 'Quick Brown Fox Jumped Over A Lazy D
 After adding the function test it using the code below.
 */
 
-// You code goes here
+function myFilter(){
+
+}
+Array.filter.myFilter = myFilter;
 
 let even = numbers.myFilter(function (num) {
   return num % 2 === 0;
@@ -48,8 +54,10 @@ new array and in the new array the index of the elements will be shuffled (rando
 Make sure it does not the changes the original array.
 
 */
+function shuffle(){
 
-// You code goes here
+}
+Array.prototype.shuffle = shuffle;
 
 // Test to check the shuffle method (It will return different output every time you call)
 console.log(numbers.shuffle());
@@ -63,7 +71,10 @@ new array and it should only contain unique elements in the array.
 Unique means no element should come multiple times.
 */
 
-// You code goes here
+function unique(){
+  let arr =[];
+}
+Array.prototype.unique = unique;
 
 // Test to check the shuffle method (It will return different output every time you call)
 let num = [1, 2, 3, 4, 2, 3, 6, 7, 7];
@@ -76,8 +87,10 @@ console.log(strings.unique()); // ['h', 'e', 'l', 'o', 'w', 'r', 'd']
 5. Add a method named `intersection` to Array.prototype. The method intersection will accept an array and returns a new
 array that will contain only element that is common in both the array.
 */
+function intersection( arr){
 
-// You code goes here
+}
+Array.prototype.intersection = intersection; 
 
 // Test to check the shuffle method (It will return different output every time you call)
 console.log(num.intersection([2, 7, 11, 32])); // [2, 7]
@@ -89,7 +102,10 @@ and split the array into groups the length of size. If array can't be split even
 chunk will be the remaining elements. `length` should default to 1.
 */
 
-// You code goes here
+function chunk(length){
+
+}
+Array.prototype.chunk = chunk;
 
 // Test to check the shuffle method (It will return different output every time you call)
 console.log(num.chunk(2)); // [[1, 2], [3, 4], [2, 3], [6, 7], [7]]
